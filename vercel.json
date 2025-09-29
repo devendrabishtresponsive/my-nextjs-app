@@ -2,12 +2,11 @@
     "$schema": "https://openapi.vercel.sh/vercel.json",
     "crons": [
         {
-            "path": "/api/cron",          // path must start with '/'
-            "schedule": "0 5 * * *"      // cron expression (this is 05:00 UTC daily)
+            "path": "/api/cron",
+            "schedule": "0 5 * * *"
         }
     ],
     "functions": {
-        // optional: pin runtime for a specific function file
         "app/api/cron/route.ts": { "runtime": "nodejs18.x" }
     }
 }
