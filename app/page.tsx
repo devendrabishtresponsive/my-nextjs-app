@@ -3,7 +3,7 @@
 import { useState } from "react";
 
 export default function Home() {
-    const [data, setData] = useState<any>(null);
+    const [data, setData] = useState<unknown>(null);
     const callGet = async () => {
         const res = await fetch("/api/hello");
         setData(await res.json());
