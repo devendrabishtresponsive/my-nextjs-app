@@ -3,10 +3,7 @@
     "crons": [
         {
             "path": "/api/cron",
-            "schedule": "0 5 * * *"
+            "schedule": "* * * * *"
         }
-    ],
-    "functions": {
-        "app/api/cron/route.ts": { "runtime": "nodejs18.x" }
-    }
+    ]
 }
