@@ -2,12 +2,27 @@
 "use client";
 import { useState } from "react";
 
+type HelloResponse = {
+    message: string;
+    now: string;
+    received?: object; // for POST
+};
+
 export default function Home() {
-    const [data, setData] = useState<unknown>(null);
+    // const [data, setData] = useState<unknown>(null);
+    // const callGet = async () => {
+    //     const res = await fetch("/api/hello");
+    //     setData(await res.json());
+    // };
+    
+    const [data, setData] = useState<HelloResponse | null>(null);
+    
     const callGet = async () => {
         const res = await fetch("/api/hello");
-        setData(await res.json());
+        const json: HelloResponse = await res.json();
+        setData(json);
     };
+    
     const callPost = async () => {
         const res = await fetch("/api/hello", {
             method: "POST",
@@ -25,8 +40,11 @@ export default function Home() {
                 <br/>
                 <button onClick={callPost}>Call POST /api/hello</button>
             </div>
-            <pre style={{ whiteSpace: "pre-wrap", marginTop: 12 }}>
+            {/* <pre style={{ whiteSpace: "pre-wrap", marginTop: 12 }}>
                 {data ? JSON.stringify(data, null, 2) : "Response will appear here"}
+            </pre> */}
+            <pre style={{ whiteSpace: "pre-wrap", marginTop: 12 }}>
+                {data ? `Message: ${data.message}\nTime: ${data.now}` : "Response will appear here"}
             </pre>
         </main>
     );
